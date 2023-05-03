@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Filter = ({ value, onChange }) => (
+const Filter = ({ value, onSearch }) => (
   <input
     type="text"
     name="filter"
     value={value}
-    onChange={onChange}
+    onChange={onSearch}
     placeholder="Search contacts"
   />
 );
