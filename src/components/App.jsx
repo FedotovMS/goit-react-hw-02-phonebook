@@ -84,6 +84,7 @@ import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 class App extends Component {
   state = {
@@ -104,11 +105,11 @@ class App extends Component {
   formSubmitHandler = data => {
     console.log(data.name);
     const existingContact = this.state.contacts.find(
-      contact => contact.name === data.name
+      contact => contact.name.toLowerCase() === data.name.toLowerCase()
     );
 
     if (existingContact) {
-      alert(`${this.data.name} is already in contacts!`);
+      alert(`${data.name} is already in contacts!`);
       return;
     }
 
@@ -149,4 +150,14 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  filter: PropTypes.string,
+};
 export default App;
